@@ -115,3 +115,7 @@ function set_bash_prompt () {
 
 # Tell bash to execute this function just before displaying its prompt.
 PROMPT_COMMAND=set_bash_prompt
+
+# folder colors
+alias ls='ls --color=auto'
+alias ps-gpu="nvidia-smi -q -x | grep pid | sed -e 's/<pid>//g' -e 's/<\/pid>//g' -e 's/^[[:space:]]*//' | xargs ps -up"
