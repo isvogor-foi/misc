@@ -120,3 +120,9 @@ PROMPT_COMMAND=set_bash_prompt
 alias ls='ls --color=auto'
 alias ps-gpu="nvidia-smi -q -x | grep pid | sed -e 's/<pid>//g' -e 's/<\/pid>//g' -e 's/^[[:space:]]*//' | xargs ps -up"
 alias git-graph="git log --graph --pretty=oneline --abbrev-commit"
+
+# Use fzf for Ctrl+R (reverse search)
+__fzf_history() {
+  HISTTIMEFORMAT= history | tac | awk '{$1=""; print substr($0,2)}' | fzf --height=50% --border --reverse
+}
+bind -x '"\C-r": "__fzf_history"'
